@@ -1,6 +1,8 @@
 package GUI.start;
 
 import GUI.Card;
+import GUI.Deck;
+import GUI.RangePane;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +21,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        RangePane rangePane = new RangePane();
+        StackPane pane = new StackPane();
+        pane.getChildren().add(rangePane);
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 912, 635));

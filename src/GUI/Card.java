@@ -12,24 +12,24 @@ public class Card {
 
     public Card(String fileName) {
         this.image = new Image("./GUI/images/" + fileName + ".png");
-        System.out.println(image.getUrl());
         cardVal = findRank(fileName) + findSuit(fileName);
     }
 
-    private char findSuit(String fileName) {
+
+
+    private String findSuit(String fileName) {
         String suit = fileName.split("_")[2];
         switch (suit) {
-            case "hearts": return 'h';
-            case "spades": return 's';
-            case "diamonds": return 'd';
-            case "clubs": return 'c';
+            case "hearts": return "h";
+            case "spades": return "s";
+            case "diamonds": return "d";
+            case "clubs": return "c";
         }
         throw new IllegalArgumentException("bad filename");
     }
 
 
     private String findRank(String fileName) {
-        System.out.println(fileName);
         String rank = fileName.split("_")[0];
         switch (rank) {
             case "ace": return "A";
@@ -40,6 +40,8 @@ public class Card {
             default: return rank;
         }
     }
+
+
 
     public String getCardVal() {
         return cardVal;

@@ -76,7 +76,7 @@ public class Calculator {
      * @param rangeHand hand considered
      * @return List of possible variations of the hand considered
      */
-    private static List<String[]> getAllHands(String rangeHand) {
+    public static List<String[]> getAllHands(String rangeHand) {
         List<String[]> hands = new ArrayList<>();
         String card1 = rangeHand.substring(0, 1);
         String card2 = rangeHand.substring(1, 2);
@@ -117,7 +117,7 @@ public class Calculator {
      * @param oppRange range of hands our opponent could have
      * @return double representing the equity of our hand
      */
-    public static double getEquity(List<String> flop, String[] ourHand, List<String> oppRange) {
+    public static double getEquity(List<String> flop, List<String> ourHand, List<String> oppRange) {
         double totalHands = 0;
         double handsWon = 0;
 
@@ -136,7 +136,7 @@ public class Calculator {
         HashMap<Integer, Integer> ourRanks = new HashMap<>();
         HashMap<Character, Integer> ourSuits = new HashMap<>();
         List<String> ourCards = new ArrayList<>(flop);
-        ourCards.addAll(Arrays.asList(ourHand));
+        ourCards.addAll(ourHand);
         populate(ourRanks, ourSuits, ourCards);
 
 
