@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -35,4 +36,23 @@ public class Alert {
         window.setScene(scene);
         window.showAndWait();
     }
+
+    public static void displayRange(RangePane rangePane) {
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Current Range");
+        window.setMaxWidth(rangePane.getW() + 20);
+        window.setMaxHeight(rangePane.getH() + 30);
+        window.setMinWidth(rangePane.getW());
+        window.setMinHeight(rangePane.getH());
+
+        StackPane pane = new StackPane();
+        pane.getChildren().add(rangePane);
+
+        Scene scene = new Scene(pane);
+        window.setScene(scene);
+        window.showAndWait();
+    }
+
+
 }

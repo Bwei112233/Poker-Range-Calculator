@@ -9,12 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import tools.Actions;
 import tools.Range;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class MainController {
 
@@ -98,10 +96,16 @@ public class MainController {
         hole2.setImage(holeCards.get(1).image);
     }
 
-
+    @FXML
+    private void showRange() {
+        Alert.displayRange(rangePane);
+    }
 
     private void resetRange(Range newRange, RangePane rangePane) {
         List<String> rangeCards = newRange.range;
+        rangePane.reset();
+        for (String cards : rangeCards) {
+            rangePane.getButtonMap().get(cards).setStyle("-fx-background-color: deepskyblue");
+        }
     }
-
 }

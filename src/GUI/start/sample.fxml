@@ -15,7 +15,7 @@
    <top>
       <AnchorPane prefHeight="31.0" prefWidth="944.0">
          <children>
-            <Button fx:id="rangeBut" mnemonicParsing="false" prefHeight="35.0" prefWidth="87.0" text="Open Range" AnchorPane.rightAnchor="0.0" BorderPane.alignment="TOP_RIGHT" />
+            <Button fx:id="rangeBut" mnemonicParsing="false" onMouseClicked="#showRange" prefHeight="35.0" prefWidth="87.0" text="Open Range" AnchorPane.rightAnchor="0.0" BorderPane.alignment="TOP_RIGHT" />
          </children>
       </AnchorPane>
    </top>
