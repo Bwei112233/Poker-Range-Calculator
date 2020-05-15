@@ -16,7 +16,7 @@ public class CardUtils {
         ranks.put('5', "Set");
         ranks.put('6', "Two Pair");
         ranks.put('7', "Pair");
-        ranks.put('8', "High GUI.Card");
+        ranks.put('8', "High Card");
     }
 
     /**
@@ -41,7 +41,7 @@ public class CardUtils {
 
         // check full house
         bHand = getFullHouse(ranks);
-        if (bHand.charAt(0) != '0' && bHand.charAt(2) != '0') return "2-" + bHand;
+        if (bHand.charAt(0) != '0' && bHand.charAt(bHand.length() - 1) != '0') return "2-" + bHand;
 
         // check flush
         bHand = getFlush(suits, cards);
@@ -123,7 +123,9 @@ public class CardUtils {
             if (cards.get(card) == 4) {
                 quadRank = card;
             } else {
-                kickerRank = card;
+                if (cards.get(card) != 0) {
+                    kickerRank = Math.max(kickerRank, card);
+                }
             }
         }
         return quadRank + "-" + kickerRank;
@@ -138,9 +140,16 @@ public class CardUtils {
         int maxSetRank = 0;
         int maxPairRank = 0;
         for (Integer card : cards.keySet()) {
-            if (cards.get(card) == 3 && card > maxSetRank) {
-                maxSetRank = card;
-                maxPairRank = Math.max(maxPairRank, maxSetRank);
+            if (cards.get(card) == 3) {
+                int temp = maxSetRank;
+                if (card > maxSetRank) {
+                    maxSetRank = card;
+                    if (temp != 0) {
+                        maxPairRank = Math.max(maxPairRank, temp);
+                    }
+                } else {
+                    maxPairRank = Math.max(maxPairRank, card);
+                }
             }
             if (cards.get(card) == 2 && card > maxPairRank) {
                 maxPairRank = card;

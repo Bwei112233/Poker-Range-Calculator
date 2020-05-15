@@ -47,10 +47,10 @@ public class Calculator {
         String ourHand = CardUtils.findBestHand(ourRanks, ourSuits, ourCards);
         String oppHand = CardUtils.findBestHand(oppRanks, oppSuits, oppCards);
 
-//        System.out.println("our cards are " + ourCards);
-//        System.out.println("opponents cards are " + oppCards);
-//        System.out.println("Our hand is " + CardUtils.ranks.get(ourHand.charAt(0)) + " with key " + ourHand);
-//        System.out.println("Opponents hand is " + CardUtils.ranks.get(oppHand.charAt(0)) + " with key " + oppHand);
+        System.out.println("our cards are " + ourCards);
+        System.out.println("opponents cards are " + oppCards);
+        System.out.println("Our hand is " + CardUtils.ranks.get(ourHand.charAt(0)) + " with key " + ourHand);
+        System.out.println("Opponents hand is " + CardUtils.ranks.get(oppHand.charAt(0)) + " with key " + oppHand);
 
 
         if (ourHand.charAt(0) < oppHand.charAt(0)) {
@@ -118,11 +118,12 @@ public class Calculator {
      * @return double representing the equity of our hand
      */
     public static double getEquity(List<String> flop, List<String> ourHand, List<String> oppRange) {
+        System.out.println(flop);
+        System.out.println(ourHand);
+
         double totalHands = 0;
         double handsWon = 0;
 
-        double no_flush_wins = -1;
-        double total_no_flush_hands = 0;
 
         HashSet<String> finalDeadCards = new HashSet<String>();
 
@@ -149,6 +150,10 @@ public class Calculator {
         }
 
         for (String rangeHand : oppRange) {
+            double no_flush_wins = -1;
+            double total_no_flush_hands = 0;
+            double range_hand_won = 0;
+            double range_hand_total = 0;
             for (String[] hand : getAllHands(rangeHand)) {
                 int curr_wins = 0;
                 int curr_checked = 0;
@@ -167,12 +172,13 @@ public class Calculator {
                     deadCards.add(card);
                 }
 
-
                 // avoid unnecessary work when no flush is possible
                 boolean canMakeFlush = CardUtils.checkFlush(oppSuits);
                 if (!canMakeFlush && no_flush_wins != -1) {
                     handsWon += no_flush_wins;
                     totalHands += total_no_flush_hands;
+                    range_hand_total += total_no_flush_hands;
+                    range_hand_won += no_flush_wins;
                     // remove cards
                     for (String card : hand) {
                         int or = CardUtils.getRank(card);
@@ -216,8 +222,8 @@ public class Calculator {
 
 
                         int result = findWin(ourRanks, oppRanks, ourSuits, oppSuits, ourCards, oppCards);
-//                        System.out.println(result + " end");
-//                        System.out.println(" ");
+                        System.out.println(result + " end");
+                        System.out.println(" ");
 
                         curr_wins += result;
                         handsWon += result;
@@ -263,7 +269,14 @@ public class Calculator {
                 System.out.println("total hands checked is " + curr_checked);
                 System.out.println("percent hands won is " + (double) curr_wins / curr_checked);
                 System.out.println(" ");
+
+                range_hand_won += curr_wins;
+                range_hand_total += curr_checked;
             }
+            System.out.println("total hands won vs opponent range of " + rangeHand + " is " + range_hand_won);
+            System.out.println("total hands checked is " + range_hand_total);
+            System.out.println("percent hands won is " + (range_hand_won / range_hand_total));
+            System.out.println(" ");
 
         }
         return ((double) handsWon) / totalHands;

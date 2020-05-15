@@ -1,7 +1,10 @@
 package GUI;
 
 import javafx.scene.control.Button;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import tools.Range;
 
 import java.util.HashMap;
@@ -15,6 +18,23 @@ public class RangePane extends GridPane {
         super();
         String [] hands = Range.rangeChart.split(" ");
         int pointer = 0;
+
+        // make buttons fit pane
+        for (int i = 0; i < 13; i++) {
+            RowConstraints rc = new RowConstraints();
+            rc.setFillHeight(true);
+            rc.setVgrow(Priority.ALWAYS);
+            this.getRowConstraints().add(rc);
+        }
+
+        for (int i = 0; i < 13; i++) {
+            ColumnConstraints cc = new ColumnConstraints();
+            cc.setFillWidth(true);
+            cc.setHgrow(Priority.ALWAYS);
+            this.getColumnConstraints().add(cc);
+        }
+
+
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 13; j++) {
                 String card = hands[pointer];
@@ -22,6 +42,7 @@ public class RangePane extends GridPane {
                     card += " ";
                 }
                 Button b = new Button(card);
+                b.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
                 b.setStyle("-fx-background-radius: 0");
                 this.add(b, j, i);
                 if (hands[pointer].charAt(hands[pointer].length() - 1) == 'o') {
@@ -32,6 +53,7 @@ public class RangePane extends GridPane {
                 pointer++;
             }
         }
+
     }
 
     public HashMap<String, Button> getButtonMap() {
@@ -43,6 +65,7 @@ public class RangePane extends GridPane {
         for (Button b : buttonMap.values()) {
             b.getStyleClass().removeAll();
         }
+
     }
 
     public int getW() {

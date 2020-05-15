@@ -67,11 +67,9 @@ public class MainController {
         double currEquity = tools.Calculator.getEquity(flopCards, holeCards, driver.getRange().range);
         if (equityRange[0] < currEquity && currEquity < equityRange[1]) {
             // make correct popup
-            System.out.println(currEquity);
             Alert.displayAlert("correct!", currEquity);
         } else {
             // make bad popup
-            System.out.println(currEquity);
             Alert.displayAlert("incorrect!", currEquity);
         }
     }
@@ -82,7 +80,6 @@ public class MainController {
         resetCards(driver.getFlopCards(), driver.getHoleCards());
         resetRange(driver.getRange(), rangePane);
         handInfo.setText(driver.getScenarioInfo());
-        System.out.println(driver.getScenarioInfo());
     }
 
 

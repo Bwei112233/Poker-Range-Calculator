@@ -82,7 +82,7 @@ public class Range {
 
     private static void getPercentages() {
         percentages.put("0-0", .1);
-        percentages.put("0-1", .1);
+        percentages.put("0-1", .14);
         percentages.put("0-2", .1);
         percentages.put("0-3", .1);
         percentages.put("1-0", .1);
