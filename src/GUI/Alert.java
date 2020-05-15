@@ -9,7 +9,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
+/**
+ * Creates Alerts based on Actions by GUI.
+ */
 public class Alert {
     public static void displayAlert(String message, double equity) {
         Stage window = new Stage();

@@ -14,6 +14,9 @@ import tools.Range;
 
 import java.util.*;
 
+/**
+ * Handles events from the GUI
+ */
 public class MainController {
 
     @FXML
@@ -86,11 +89,11 @@ public class MainController {
 
 
     private void resetCards(List<Card> flopCards, List<Card> holeCards) {
-        flop1.setImage(flopCards.get(0).image);
-        flop2.setImage(flopCards.get(1).image);
-        flop3.setImage(flopCards.get(2).image);
-        hole1.setImage(holeCards.get(0).image);
-        hole2.setImage(holeCards.get(1).image);
+        flop1.setImage(flopCards.get(0).getImage());
+        flop2.setImage(flopCards.get(1).getImage());
+        flop3.setImage(flopCards.get(2).getImage());
+        hole1.setImage(holeCards.get(0).getImage());
+        hole2.setImage(holeCards.get(1).getImage());
     }
 
     @FXML
