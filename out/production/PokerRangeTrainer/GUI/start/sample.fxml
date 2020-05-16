@@ -22,14 +22,22 @@
    <bottom>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="897.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutY="50.0" prefHeight="160.0" prefWidth="119.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox alignment="CENTER" layoutY="50.0" prefHeight="180.0" prefWidth="144.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="119.0" text="Estimate Equity">
+                  <Label alignment="CENTER" prefHeight="33.0" prefWidth="142.0" text="Estimate" textFill="#f52121">
                      <VBox.margin>
                         <Insets bottom="4.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="Forte" size="26.0" />
+                     </font>
                   </Label>
-                  <Button fx:id="equity_67_100" mnemonicParsing="false" onMouseClicked="#equityClicked" prefHeight="25.0" prefWidth="120.0" text="67% to 100%">
+                  <Label text="Equity" textFill="#f52121">
+                     <font>
+                        <Font name="Forte" size="26.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="equity_67_100" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#equityClicked" prefHeight="25.0" prefWidth="124.0" text="67% to 100%">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -37,7 +45,7 @@
                         <Insets bottom="6.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="equity_34_66" mnemonicParsing="false" onMouseClicked="#equityClicked" prefHeight="25.0" prefWidth="120.0" text="34% to 66%">
+                  <Button fx:id="equity_34_66" mnemonicParsing="false" onMouseClicked="#equityClicked" prefHeight="25.0" prefWidth="124.0" text="34% to 66%">
                      <VBox.margin>
                         <Insets bottom="6.0" />
                      </VBox.margin>
@@ -47,21 +55,24 @@
                         <Insets bottom="6.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="nextHand" mnemonicParsing="false" onMouseClicked="#startAnotherHand" prefHeight="25.0" prefWidth="122.0" text="Skip Hand">
+                  <Button fx:id="nextHand" mnemonicParsing="false" onMouseClicked="#startAnotherHand" prefHeight="25.0" prefWidth="124.0" text="Next Hand">
                      <VBox.margin>
                         <Insets bottom="6.0" />
                      </VBox.margin>
                   </Button>
                </children>
             </VBox>
-            <VBox layoutY="14.0" prefHeight="168.0" prefWidth="197.0">
+            <VBox layoutY="14.0" prefHeight="182.0" prefWidth="223.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="198.0" text="Our Notes" textFill="#e41313" />
+                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="198.0" text="Our Notes" textFill="#e41313">
+                     <font>
+                        <Font name="Forte" size="26.0" />
+                     </font></Label>
                   <TextFlow prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fx:id="handInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="UTG opens and we 3-bet. UTG calls" wrappingWidth="197.75634765625">
+                        <Text fx:id="handInfo" fill="#eea30c" stroke="#e85353" strokeType="OUTSIDE" strokeWidth="0.0" text="Click the &quot;Next Hand&quot; button to get started!" wrappingWidth="207.95596313476562">
                            <font>
-                              <Font size="23.0" />
+                              <Font name="Dubai Regular" size="23.0" />
                            </font>
                         </Text>
                      </children>
@@ -77,26 +88,16 @@
             <HBox alignment="CENTER" prefHeight="129.0" prefWidth="912.0">
                <children>
                   <ImageView fx:id="flop1" fitHeight="150.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/2_of_hearts.png" />
-                     </image>
                      <HBox.margin>
                         <Insets right="4.0" />
                      </HBox.margin>
                   </ImageView>
                   <ImageView fx:id="flop2" fitHeight="150.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/4_of_clubs.png" />
-                     </image>
                      <HBox.margin>
                         <Insets right="4.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="flop3" fitHeight="150.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/4_of_spades.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="flop3" fitHeight="150.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -107,14 +108,8 @@
                   <Insets top="50.0" />
                </VBox.margin>
                <children>
-                  <ImageView fx:id="hole1" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/7_of_spades.png" />
-                     </image></ImageView>
-                  <ImageView fx:id="hole2" fitHeight="150.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/7_of_diamonds.png" />
-                     </image></ImageView>
+                  <ImageView fx:id="hole1" fitHeight="150.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hole2" fitHeight="150.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
          </children>

@@ -6,10 +6,7 @@ import tools.Actions;
 import tools.Calculator;
 import tools.Range;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Driver {
     private static Deck deck;
@@ -23,7 +20,9 @@ public class Driver {
         generateScenario();
     }
 
-    private void generateScenario() {
+    public void generateScenario() {
+        flopCards.clear();
+        holeCards.clear();
         Random random = new Random();
 
         // generate positions of players
@@ -49,10 +48,12 @@ public class Driver {
 
 
         // generate flop
+        HashSet<String> inFlop = new HashSet<>();
         while (flopCards.size() != 3) {
             Card c = deck.getAllCards().get(random.nextInt(52));
-            if (!ourFinalHand.contains(c.getCardVal())) {
+            if (!ourFinalHand.contains(c.getCardVal()) && !inFlop.contains(c.getCardVal())) {
                 flopCards.add(c);
+                inFlop.add(c.getCardVal());
             }
         }
     }

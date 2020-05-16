@@ -46,8 +46,9 @@ public class MainController {
     @FXML
     private Text handInfo;
 
+    static boolean handGenerated = false;
     static Deck deck = new Deck();
-    static Driver driver;
+    static Driver driver = new Driver(deck);
     static RangePane rangePane = new RangePane();
 
     private static HashMap<String, double[]> equityMap = new HashMap<>();
@@ -58,6 +59,10 @@ public class MainController {
     }
 
     public void equityClicked(MouseEvent mouseEvent) {
+        if (!handGenerated) {
+            Alert.displayInitError();
+            return;
+        }
         Button b  = (Button) mouseEvent.getSource();
         double [] equityRange = equityMap.get(b.getText());
 
@@ -79,7 +84,7 @@ public class MainController {
 
 
     public void startAnotherHand() {
-        driver = new Driver(deck);
+        driver.generateScenario();
         resetCards(driver.getFlopCards(), driver.getHoleCards());
         resetRange(driver.getRange(), rangePane);
         handInfo.setText(driver.getScenarioInfo());
@@ -89,6 +94,7 @@ public class MainController {
 
 
     private void resetCards(List<Card> flopCards, List<Card> holeCards) {
+        handGenerated = true;
         flop1.setImage(flopCards.get(0).getImage());
         flop2.setImage(flopCards.get(1).getImage());
         flop3.setImage(flopCards.get(2).getImage());

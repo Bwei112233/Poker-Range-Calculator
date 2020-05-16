@@ -39,14 +39,36 @@ public class Alert {
         window.showAndWait();
     }
 
+    public static void displayInitError() {
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Alert");
+        window.setMinWidth(300);
+
+
+        Label errorLabel = new Label();
+        errorLabel.setText("Please start a hand first!");
+
+        Button b = new Button("close");
+        b.setOnAction(e -> window.close());
+
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(errorLabel, b);
+        layout.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.showAndWait();
+    }
+
     public static void displayRange(RangePane rangePane) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Current Range");
         window.setMaxWidth(rangePane.getW() + 20);
         window.setMaxHeight(rangePane.getH() + 30);
-        window.setMinWidth(rangePane.getW());
-        window.setMinHeight(rangePane.getH());
+        window.setMinWidth(rangePane.getW() + 20);
+        window.setMinHeight(rangePane.getH() + 30);
 
         StackPane pane = new StackPane();
         pane.getChildren().add(rangePane);
