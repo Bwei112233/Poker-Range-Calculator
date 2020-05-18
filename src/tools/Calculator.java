@@ -40,7 +40,7 @@ public class Calculator {
      * @param oppCards List storing all cards in opponent's hand
      * @return
      */
-    public static int findWin(HashMap<Integer, Integer> ourRanks, HashMap<Integer, Integer> oppRanks,
+    public static double findWin(HashMap<Integer, Integer> ourRanks, HashMap<Integer, Integer> oppRanks,
                               HashMap<Character, Integer> ourSuits, HashMap<Character, Integer> oppSuits,
                               List<String> ourCards, List<String> oppCards) {
 
@@ -67,7 +67,7 @@ public class Calculator {
                 if (ourKicker < oppKicker) return 0;
             }
         }
-        return 0;
+        return .5;
     }
 
     /**
@@ -84,10 +84,19 @@ public class Calculator {
             for (String suit : suits) {
                 hands.add(new String[]{card1 + suit, card2 + suit});
             }
+        } else if (card1.equals(card2)) {
+            for (int i = 0; i < suits.length; i++) {
+                for (int j = i + 1; j < suits.length; j ++) {
+                    hands.add(new String[]{card1 + suits[i], card2 + suits[j]});
+                }
+            }
+
         } else {
             for (int i = 0; i < suits.length; i++) {
-                for (int j = i + 1; j < suits.length; j++) {
-                    hands.add(new String[]{card1 + suits[i], card2 + suits[j]});
+                for (int j = 0; j < suits.length; j++) {
+                    if (i != j) {
+                        hands.add(new String[]{card1 + suits[i], card2 + suits[j]});
+                    }
                 }
             }
         }
@@ -118,8 +127,6 @@ public class Calculator {
      * @return double representing the equity of our hand
      */
     public static double getEquity(List<String> flop, List<String> ourHand, List<String> oppRange) {
-        System.out.println(flop);
-        System.out.println(ourHand);
 
         double totalHands = 0;
         double handsWon = 0;
@@ -174,11 +181,18 @@ public class Calculator {
 
                 // avoid unnecessary work when no flush is possible
                 boolean canMakeFlush = CardUtils.checkFlush(oppSuits);
-                if (!canMakeFlush && no_flush_wins != -1) {
+                if (!canMakeFlush && no_flush_wins != -1 && !impossibleHand) {
                     handsWon += no_flush_wins;
                     totalHands += total_no_flush_hands;
                     range_hand_total += total_no_flush_hands;
                     range_hand_won += no_flush_wins;
+
+                    System.out.println("total hands won in range " + rangeHand + " with opponent hand " + Arrays.toString(hand) + " is " + no_flush_wins);
+                    System.out.println("total hands checked is " + total_no_flush_hands);
+                    System.out.println("percent hands won is " + (double) no_flush_wins / total_no_flush_hands);
+                    System.out.println(" ");
+
+
                     // remove cards
                     for (String card : hand) {
                         int or = CardUtils.getRank(card);
@@ -221,14 +235,14 @@ public class Calculator {
                         ourSuits.put(sj, ourSuits.getOrDefault(sj, 0) + 1);
 
 
-                        int result = findWin(ourRanks, oppRanks, ourSuits, oppSuits, ourCards, oppCards);
+                        double result = findWin(ourRanks, oppRanks, ourSuits, oppSuits, ourCards, oppCards);
                         System.out.println(result + " end");
                         System.out.println(" ");
 
                         curr_wins += result;
                         handsWon += result;
-                        curr_checked++;
-                        totalHands++;
+                        curr_checked ++;
+                        totalHands ++;
 
                         // remove "j" card
                         oppCards.remove(oppCards.size() - 1);
@@ -264,8 +278,8 @@ public class Calculator {
                     total_no_flush_hands = curr_checked;
                 }
 
-                // debug statements
-                System.out.println("total hands won with opponent hand " + Arrays.toString(hand) + " is " + curr_wins);
+//                 debug statements
+                System.out.println("total hands won in range " + rangeHand +" with opponent hand " + Arrays.toString(hand) + " is " + curr_wins);
                 System.out.println("total hands checked is " + curr_checked);
                 System.out.println("percent hands won is " + (double) curr_wins / curr_checked);
                 System.out.println(" ");

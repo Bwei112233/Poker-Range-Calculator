@@ -63,7 +63,11 @@ public class RangePane extends GridPane {
 
     public void reset() {
         for (Button b : buttonMap.values()) {
-            b.getStyleClass().removeAll();
+            b.setStyle("-fx-background-radius: 0");
+//            System.out.println("previous style is " + b.getStyle());;
+//            System.out.println("button style removed");
+//            System.out.println("current style is " + b.getStyle());
+//            System.out.println(" ");;
         }
 
     }

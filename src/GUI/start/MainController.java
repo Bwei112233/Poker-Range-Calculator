@@ -4,15 +4,18 @@ import GUI.Alert;
 import GUI.Card;
 import GUI.Deck;
 import GUI.RangePane;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import tools.Actions;
+import javafx.util.Duration;
 import tools.Range;
-
 import java.util.*;
+
 
 /**
  * Handles events from the GUI
@@ -45,6 +48,9 @@ public class MainController {
 
     @FXML
     private Text handInfo;
+
+    @FXML
+    private StackPane flopStack;
 
     static boolean handGenerated = false;
     static Deck deck = new Deck();
@@ -88,19 +94,39 @@ public class MainController {
         resetCards(driver.getFlopCards(), driver.getHoleCards());
         resetRange(driver.getRange(), rangePane);
         handInfo.setText(driver.getScenarioInfo());
+        handGenerated = true;
     }
 
 
 
 
     private void resetCards(List<Card> flopCards, List<Card> holeCards) {
-        handGenerated = true;
+        hole1.setImage(holeCards.get(0).getImage());
+        hole2.setImage(holeCards.get(1).getImage());
+
+        flopStack.setPadding(new Insets(0, 0, 0, hole1.getX() - 240));
+
+        // reset pos of flop cards
+        flop2.setX(flop1.getX());
+        flop3.setX(flop1.getX());
         flop1.setImage(flopCards.get(0).getImage());
         flop2.setImage(flopCards.get(1).getImage());
         flop3.setImage(flopCards.get(2).getImage());
-        hole1.setImage(holeCards.get(0).getImage());
-        hole2.setImage(holeCards.get(1).getImage());
+
+        preformTranslate(flop2, 110);
+        preformTranslate(flop3, 220);
     }
+
+    private void preformTranslate(ImageView cardImage, int distance) {
+        // Set up a Translate Transition for the Text object
+        TranslateTransition trans = new TranslateTransition(Duration.seconds(1.2), cardImage);
+        trans.setFromX(cardImage.getX());
+        trans.setToX(cardImage.getX() + distance);
+        trans.setCycleCount(1);
+        // Play the Animation
+        trans.play();
+    }
+
 
     @FXML
     private void showRange() {

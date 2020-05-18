@@ -65,10 +65,10 @@ public class Alert {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Current Range");
-        window.setMaxWidth(rangePane.getW() + 20);
-        window.setMaxHeight(rangePane.getH() + 30);
-        window.setMinWidth(rangePane.getW() + 20);
-        window.setMinHeight(rangePane.getH() + 30);
+        window.setMaxWidth(rangePane.getW() + 50);
+        window.setMaxHeight(rangePane.getH() + 50);
+        window.setMinWidth(rangePane.getW() + 50);
+        window.setMinHeight(rangePane.getH() + 50);
 
         StackPane pane = new StackPane();
         pane.getChildren().add(rangePane);

@@ -41,7 +41,7 @@ public class CardUtils {
 
         // check full house
         bHand = getFullHouse(ranks);
-        if (bHand.charAt(0) != '0' && bHand.charAt(bHand.length() - 1) != '0') return "2-" + bHand;
+        if (bHand.charAt(0) != '0' && !bHand.split("-")[1].equals("0")) return "2-" + bHand;
 
         // check flush
         bHand = getFlush(suits, cards);
@@ -215,6 +215,10 @@ public class CardUtils {
      * @return String representing highest card in the best straight possible, "0" if no straight is possible
      */
     public static String getStraight(HashMap<Integer, Integer> cards) {
+        boolean possibleWheel = false;
+        if (cards.containsKey(14) && cards.get(14) != 0) {
+            possibleWheel = true;
+        }
         for (int i = 14; i >= 5; i--) {
             int start = i;
             int count = 0;
@@ -229,9 +233,25 @@ public class CardUtils {
                 count ++;
             }
         }
+        if (possibleWheel) {
+            return getWheel(cards);
+        }
         return "0";
     }
 
+    /**
+     * Checks if there is a A-5 Straight
+     * @param cards ranks of the cards
+     * @return "5" if there is wheel, "0" otherwise
+     */
+    private static String getWheel(HashMap<Integer, Integer> cards) {
+        for (int i = 2; i <= 5; i++) {
+            if (!cards.containsKey(i) || cards.get(i) == 0) {
+                return "0";
+            }
+        }
+        return "5";
+    }
 
     /**
      * Checks if a Set (3 of a kind) can be made given the current hand.
