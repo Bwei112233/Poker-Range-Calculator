@@ -1,19 +1,24 @@
 package GUI;
-
 import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import tools.Range;
-
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Custom Pane created to represent an opponent's range.
+ */
 public class RangePane extends GridPane {
     private HashMap<String, Button> buttonMap = new HashMap<>();
     private int w = 465;
     private int h = 330;
+
+    /**
+     * Creates a RangePane object with all 169 possible hand ranges.
+     */
     public RangePane() {
         super();
         String [] hands = Range.rangeChart.split(" ");
@@ -56,26 +61,37 @@ public class RangePane extends GridPane {
 
     }
 
+    /**
+     * gets the dictionary that maps String representation of a range to its counterpart on RangePane.
+     * @return
+     */
     public HashMap<String, Button> getButtonMap() {
         return buttonMap;
     }
 
 
+    /**
+     * resets RangePane graphics for the next scenario.
+     */
     public void reset() {
         for (Button b : buttonMap.values()) {
             b.setStyle("-fx-background-radius: 0");
-//            System.out.println("previous style is " + b.getStyle());;
-//            System.out.println("button style removed");
-//            System.out.println("current style is " + b.getStyle());
-//            System.out.println(" ");;
         }
 
     }
 
+    /**
+     * gets minimum width of range pane.
+     * @return int representing min width
+     */
     public int getW() {
         return w;
     }
 
+    /**
+     * gets minimum height of range pane.
+     * @return int representing min height
+     */
     public int getH() {
         return h;
     }

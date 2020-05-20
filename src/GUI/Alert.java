@@ -13,6 +13,11 @@ import javafx.stage.Stage;
  * Creates Alerts based on Actions by GUI.
  */
 public class Alert {
+    /**
+     * Generates and displays an Alert displaying correctness of player's choice and actual equity.
+     * @param message String representing the correctness of player's choice
+     * @param equity the actual equity of a hand
+     */
     public static void displayAlert(String message, double equity) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -39,6 +44,9 @@ public class Alert {
         window.showAndWait();
     }
 
+    /**
+     * Creates and displays Alert when player estimates a hand without generating one first.
+     */
     public static void displayInitError() {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -61,6 +69,10 @@ public class Alert {
         window.showAndWait();
     }
 
+    /**
+     * Creates and displays a window that shows the current range of opponent hands considered.
+     * @param rangePane Pane representing the opponent's range
+     */
     public static void displayRange(RangePane rangePane) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);

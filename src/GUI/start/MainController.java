@@ -52,11 +52,10 @@ public class MainController {
     @FXML
     private StackPane flopStack;
 
-    static boolean handGenerated = false;
-    static Deck deck = new Deck();
-    static Driver driver = new Driver(deck);
-    static RangePane rangePane = new RangePane();
-
+    private static boolean handGenerated = false;
+    private static Deck deck = new Deck();
+    private static Driver driver = new Driver(deck);
+    private static RangePane rangePane = new RangePane();
     private static HashMap<String, double[]> equityMap = new HashMap<>();
     static {
         equityMap.put("67% to 100%", new double[]{.67, 1});
@@ -64,6 +63,10 @@ public class MainController {
         equityMap.put("0% to 33% ", new double[]{.0, .33});
     }
 
+    /**
+     * Calculates equity of player's hand in current scenario and displays result Alert to the player.
+     * @param mouseEvent executed on mouse click of an equity button
+     */
     public void equityClicked(MouseEvent mouseEvent) {
         if (!handGenerated) {
             Alert.displayInitError();
@@ -89,6 +92,9 @@ public class MainController {
     }
 
 
+    /**
+     * resets all current graphics and generates a new scenario.
+     */
     public void startAnotherHand() {
         driver.generateScenario();
         resetCards(driver.getFlopCards(), driver.getHoleCards());

@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Class used to run tests/debug.
+ */
 public class Test {
     public static void main(String [] args) {
         List<String> ourHand = new ArrayList<>();

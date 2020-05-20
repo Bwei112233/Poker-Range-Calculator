@@ -6,6 +6,9 @@ import tools.Calculator;
 import tools.Range;
 import java.util.*;
 
+/**
+ * Class responsible for generating scenarios.
+ */
 public class Driver {
     private static Deck deck;
     private Range range;
@@ -13,11 +16,18 @@ public class Driver {
     private List<Card> holeCards = new ArrayList<>();
     private String scenarioInfo = "";
 
+    /**
+     * Creates a driver object.
+     * @param deck deck of cards used
+     */
     public Driver(Deck deck) {
         Driver.deck = deck;
         generateScenario();
     }
 
+    /**
+     * generates a scenario that the player may encounter in a real game.
+     */
     public void generateScenario() {
         flopCards.clear();
         holeCards.clear();
@@ -59,6 +69,13 @@ public class Driver {
     }
 
 
+    /**
+     * Generates a String that tells the user the current scenario considered.
+     * @param ourPos the position the player is in
+     * @param oppPos the position the opponent is in
+     * @param oppAction the action the opponent has taken preflop
+     * @return String representing the current scenario
+     */
     private String getScenarioText(int ourPos, int oppPos, int oppAction) {
         boolean weActFirst = ourPos < oppPos;
 
@@ -76,31 +93,47 @@ public class Driver {
                         " and opponent 3-bets from " + Actions.positions[oppPos] + ". We call";
             } else {
                 return " opponent open raises from " + Actions.positions[oppPos] +
-                        " and we 3-bet from " + Actions.positions[ourPos] + ". opponent calls";
+                        " and we 3-bet from " + Actions.positions[ourPos] + ". Opponent calls";
             }
         } else {
             if (weActFirst) {
                 return "we 3-bet an open raise from " + Actions.positions[ourPos] +
-                        "and opponent 4-bets from " + Actions.positions[oppPos] + ". We call";
+                        "  and opponent 4-bets from " + Actions.positions[oppPos] + ". We call";
             } else {
                 return " opponent 3-bets from " + Actions.positions[ourPos] +
-                        " and we 4-bet from " + Actions.positions[oppPos] + ". opponent calls";
+                        " and we 4-bet from " + Actions.positions[oppPos] + ". Opponent calls";
             }
         }
     }
 
+    /**
+     * gets the Range of the opponent
+     * @return Range object representing opponent's range
+     */
     public Range getRange() {
         return range;
     }
 
+    /**
+     * gets the flop cards generated in current scenario.
+     * @return List of Card objects
+     */
     public List<Card> getFlopCards() {
         return flopCards;
     }
 
+    /**
+     * gets the hole cards the player holds in current scenario.
+     * @return List of Card objects
+     */
     public List<Card> getHoleCards() {
         return holeCards;
     }
 
+    /**
+     * gets information on the current scenario.
+     * @return String representing information on current scenario
+     */
     public String getScenarioInfo() {
         return scenarioInfo;
     }
