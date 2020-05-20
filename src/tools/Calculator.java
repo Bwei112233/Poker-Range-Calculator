@@ -47,10 +47,10 @@ public class Calculator {
         String ourHand = CardUtils.findBestHand(ourRanks, ourSuits, ourCards);
         String oppHand = CardUtils.findBestHand(oppRanks, oppSuits, oppCards);
 
-        System.out.println("our cards are " + ourCards);
-        System.out.println("opponents cards are " + oppCards);
-        System.out.println("Our hand is " + CardUtils.ranks.get(ourHand.charAt(0)) + " with key " + ourHand);
-        System.out.println("Opponents hand is " + CardUtils.ranks.get(oppHand.charAt(0)) + " with key " + oppHand);
+//        System.out.println("our cards are " + ourCards);
+//        System.out.println("opponents cards are " + oppCards);
+//        System.out.println("Our hand is " + CardUtils.ranks.get(ourHand.charAt(0)) + " with key " + ourHand);
+//        System.out.println("Opponents hand is " + CardUtils.ranks.get(oppHand.charAt(0)) + " with key " + oppHand);
 
 
         if (ourHand.charAt(0) < oppHand.charAt(0)) {
@@ -162,8 +162,8 @@ public class Calculator {
             double range_hand_won = 0;
             double range_hand_total = 0;
             for (String[] hand : getAllHands(rangeHand)) {
-                int curr_wins = 0;
-                int curr_checked = 0;
+                double curr_wins = 0;
+                double curr_checked = 0;
                 boolean impossibleHand = false;
                 HashSet<String> deadCards = (HashSet<String>) finalDeadCards.clone();
                 // add cards from opponent's current hand to board
@@ -236,9 +236,9 @@ public class Calculator {
 
 
                         double result = findWin(ourRanks, oppRanks, ourSuits, oppSuits, ourCards, oppCards);
-                        System.out.println(result + " end");
-                        System.out.println(" ");
 
+//                        System.out.println(result + " end");
+//                        System.out.println(" ");
                         curr_wins += result;
                         handsWon += result;
                         curr_checked ++;

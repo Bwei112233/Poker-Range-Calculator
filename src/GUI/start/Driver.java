@@ -1,11 +1,9 @@
 package GUI.start;
-
 import GUI.Card;
 import GUI.Deck;
 import tools.Actions;
 import tools.Calculator;
 import tools.Range;
-
 import java.util.*;
 
 public class Driver {
@@ -28,16 +26,18 @@ public class Driver {
         // generate positions of players
         int ourPos = random.nextInt(9);
         int oppPos = random.nextInt(9);
-
+        while (oppPos == ourPos) {
+            oppPos = random.nextInt(9);
+        }
         // get random opponentAction
-        int oppAction = random.nextInt(4);
+        int oppAction = random.nextInt(3);
 
         // get info on scenario
         this.scenarioInfo = getScenarioText(ourPos, oppPos, oppAction);
 
         // generate our hand based on ourPos
         Range ourRange = new Range(ourPos, oppAction);
-        List<String []> ourHands = Calculator.getAllHands(ourRange.range.get(random.nextInt(ourRange.range.size())));
+        List<String[]> ourHands = Calculator.getAllHands(ourRange.range.get(random.nextInt(ourRange.range.size())));
         List<String> ourFinalHand = Arrays.asList(ourHands.get(random.nextInt(ourHands.size())));
         for (String card : ourFinalHand) {
             holeCards.add(deck.getCardHashMap().get(card));
@@ -62,15 +62,7 @@ public class Driver {
     private String getScenarioText(int ourPos, int oppPos, int oppAction) {
         boolean weActFirst = ourPos < oppPos;
 
-        if (oppAction == 0) {
-            if (weActFirst) {
-                return " we limp from " + Actions.positions[ourPos] +
-                        " and opponent calls from " + Actions.positions[oppPos];
-            } else {
-                return " opponent limp opens from " + Actions.positions[oppPos] +
-                        " and we call from " + Actions.positions[ourPos];
-            }
-        } else if (oppAction == 1) {
+        if (oppAction == 1) {
             if (weActFirst) {
                 return "we open raise from " + Actions.positions[ourPos] +
                         " and opponent calls from " + Actions.positions[oppPos];

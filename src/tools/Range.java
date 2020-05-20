@@ -81,50 +81,41 @@ public class Range {
 
 
     private static void getPercentages() {
-        percentages.put("0-0", .7);
-        percentages.put("0-1", .142);
-        percentages.put("0-2", .07);
-        percentages.put("0-3", .03);
+        percentages.put("0-0", .142);
+        percentages.put("0-1", .07);
+        percentages.put("0-2", .03);
 
-        percentages.put("1-0", .7);
-        percentages.put("1-1", .142);
-        percentages.put("1-2", .089);
-        percentages.put("1-3", .03);
+        percentages.put("1-0", .142);
+        percentages.put("1-1", .089);
+        percentages.put("1-2", .03);
 
-        percentages.put("2-0", .7);
-        percentages.put("2-1", .15);
-        percentages.put("2-2", .88);
-        percentages.put("2-3", .03);
+        percentages.put("2-0", .15);
+        percentages.put("2-1", .88);
+        percentages.put("2-2", .03);
 
-        percentages.put("3-0", .7);
-        percentages.put("3-1", .237);
-        percentages.put("3-2", .1);
-        percentages.put("3-3", .03);
+        percentages.put("3-0", .237);
+        percentages.put("3-1", .1);
+        percentages.put("3-2", .03);
 
-        percentages.put("4-0", .7);
-        percentages.put("4-1", .261);
-        percentages.put("4-2", .1);
-        percentages.put("4-3", .03);
+        percentages.put("4-0", .261);
+        percentages.put("4-1", .1);
+        percentages.put("4-2", .03);
 
-        percentages.put("5-0", .7);
-        percentages.put("5-1", .331);
-        percentages.put("5-2", .20);
-        percentages.put("5-3", .06);
+        percentages.put("5-0", .331);
+        percentages.put("5-1", .20);
+        percentages.put("5-2", .06);
 
-        percentages.put("6-0", .7);
-        percentages.put("6-1", .503);
-        percentages.put("6-2", .2544);
-        percentages.put("6-3", .0473);
+        percentages.put("6-0", .503);
+        percentages.put("6-1", .2544);
+        percentages.put("6-2", .0473);
 
-        percentages.put("7-0", .7);
-        percentages.put("7-1", .51);
-        percentages.put("7-2", .25);
-        percentages.put("7-3", .03);
+        percentages.put("7-0", .51);
+        percentages.put("7-1", .25);
+        percentages.put("7-2", .03);
 
-        percentages.put("8-0", .7);
-        percentages.put("8-1", .51);
-        percentages.put("8-2", .25);
-        percentages.put("8-3", .03);
+        percentages.put("8-0", .51);
+        percentages.put("8-1", .25);
+        percentages.put("8-2", .03);
 
     }
 }

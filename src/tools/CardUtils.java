@@ -79,35 +79,13 @@ public class CardUtils {
         if (!hasFlush) {
             return "0";
         }
-
-        List<String> copy = new ArrayList<>();
+        HashMap<Integer, Integer> stCards = new HashMap<>();
         for (String card : cards) {
             if (card.charAt(card.length() - 1) == flushSuit) {
-                copy.add(card);
+                stCards.put(getRank(card), stCards.getOrDefault(getRank(card), 0) + 1);
             }
         }
-
-        Collections.sort(copy, new Comparator<String>() {
-            @Override
-            public int compare(String s, String t1) {
-                return getRank(s) - getRank(t1);
-            }
-        });
-
-        int start = copy.size() - 1;
-        int count = 0;
-        for (int i = start; i > start - 3; i--) {
-            int pointer = i;
-            while (pointer != 0 && getRank(copy.get(pointer)) - getRank(copy.get(pointer)) == 1) {
-                count ++;
-                pointer --;
-                if (count == 4) {
-                    return Integer.toString(getRank(copy.get(i)));
-                }
-            }
-        }
-
-        return copy.get(start);
+        return getSet(stCards);
     }
 
 
@@ -265,8 +243,9 @@ public class CardUtils {
         for (Integer card : cards.keySet()) {
             if (cards.get(card) == 3) {
                 set = Math.max(card, set);
-            } else {
+            } else if (cards.get(card) != 0){
                 if (card > bigKicker) {
+                    smallKicker = bigKicker;
                     bigKicker = card;
                 }
                 else if (card > smallKicker) {

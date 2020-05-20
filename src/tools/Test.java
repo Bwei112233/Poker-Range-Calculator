@@ -8,24 +8,18 @@ import java.util.List;
 public class Test {
     public static void main(String [] args) {
         List<String> ourHand = new ArrayList<>();
-        ourHand.add("Ah");
-        ourHand.add("As");
+        ourHand.add("Ad");
+        ourHand.add("Qd");
 
         List<String> flop = new ArrayList<>();
-        flop.add("3h");
-        flop.add("5d");
-        flop.add("9c");
+        flop.add("Js");
+        flop.add("Th");
+        flop.add("Tc");
 
         List<String> oppRange = new ArrayList<>();
-        oppRange.add("AKs");
-
-
-        HashMap<Integer, Integer> ranks = new HashMap<>();
-        ranks.put(10, 2);
-        ranks.put(2, 3);
-        ranks.put(12, 1);
-        ranks.put(9, 1);
-
+//        oppRange.add("KQs");
+        oppRange.add("AK");
+//        oppRange.add("AKs");
 
 
         System.out.println(Calculator.getEquity(flop, ourHand, oppRange));
